@@ -111,8 +111,6 @@ Please see the package vignette:
 browseVignettes("RMAnno")
 ```
 
-or visit the [online documentation](https://JiongmingMa.github.io/RMAnno/).
-
 ---
 
 
