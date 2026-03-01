@@ -49,7 +49,7 @@ Moreover, RNA-specific complexities—such as overlapping genes arising from alt
 ### From GitHub (recommended)
 ```r
 if (!require("devtools")) install.packages("devtools")
-devtools::install_github("yourusername/RMAnno")
+devtools::install_github("JiongmingMa/RMAnno")
 ```
 
 ### From source (if you have the tar.gz)
@@ -64,24 +64,33 @@ install.packages("/path/to/RMAnno.tar.gz", repos = NULL, type = "source")
 Here's a minimal example to annotate RNA modification sites from a BED file:
 
 ```r
+library(GenomicRanges)
 library(RMAnno)
 
-# Read your modification sites (BED format)
-sites <- read.table("mod_sites.bed", header = FALSE)
+# Read your modification sites (here just example)
+gr1 <- GRanges(seqnames = "1", ranges = IRanges(start = c(51579900, 51579900,51180000, 51180000), width = 1), strand = c("+","-","+","-"))
+
+# Extract the information from GTF file (I use human GRCh38.114 GTF file here, from: https://ftp.ensembl.org/pub/release-115/gtf/homo_sapiens/Homo_sapiens.GRCh38.114.chr.gtf.gz )
+gtf_file <- ExtractGTFFile("path/to/your/GTF_file/Homo_sapiens.GRCh38.114.chr.gtf.gz")
 
 # Annotate using human genome hg38
-result <- RMAnno(sites, genome = "hg38")
+gr1 <- RMAnno::rmAnno(gr1, gtf_file)
 
 # Check the first few rows
-head(result)
+gr1
 ```
 
 **Expected output** (example):
 
-| chr | start   | end     | strand | gene_id | transcript_id | region   |
-|-----|---------|---------|--------|---------|---------------|----------|
-| chr1| 12345   | 12346   | +      | ENSG001 | ENST001       | CDS      |
-| chr1| 67890   | 67891   | -      | ENSG002 | ENST002       | 3'UTR    |
+GRanges object with 4 ranges and 5 metadata columns:
+      seqnames    ranges strand |      Region                Gene_id        Gene_name               Bio_type          transcript_id
+         <Rle> <IRanges>  <Rle> | <character>            <character>      <character>            <character>            <character>
+  [1]        1  51579900      + |      Intron ENSG00000227070/ENSG.. EPS15-AS1/OSBPL9  lncRNA/protein_coding ENST00000371714/ENST..
+  [2]        1  51579900      - |      Intron ENSG00000293506/ENSG..        NA/CALR4P lncRNA/transcribed_u.. ENST00000431943/ENST..
+  [3]        1  51180000      + |  Intergenic                   <NA>             <NA>                   <NA>                   <NA>
+  [4]        1  51180000      - |  Intergenic                   <NA>             <NA>                   <NA>                   <NA>
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
 
 ---
 
@@ -100,17 +109,10 @@ Please see the package vignette:
 browseVignettes("RMAnno")
 ```
 
-or visit the [online documentation](https://yourusername.github.io/RMAnno/).
+or visit the [online documentation](https://JiongmingMa.github.io/RMAnno/).
 
 ---
 
-## 📝 Citation
-
-If you use RMAnno in your research, please cite:
-
-> Your Name, et al. (2026). RMAnno: a dedicated tool for RNA modification annotation. *Bioinformatics*, XX(X), XXX-XXX. DOI: 10.1093/bioinformatics/xxxxx
-
----
 
 ## 📄 License
 
@@ -118,10 +120,3 @@ This package is licensed under the **GPL-3.0** license. See the [LICENSE](LICENS
 
 ---
 
-## 🙌 Contributing
-
-Contributions are welcome! If you encounter a bug or have a feature request, please open an [issue](https://github.com/yourusername/RMAnno/issues). Pull requests are also appreciated.
-
----
-
-*Made with ❤️ by the RMAnno team*
