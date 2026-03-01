@@ -82,6 +82,7 @@ gr1
 
 **Expected output** (example):
 
+```plaintext
 GRanges object with 4 ranges and 5 metadata columns:
       seqnames    ranges strand |      Region                Gene_id        Gene_name               Bio_type          transcript_id
          <Rle> <IRanges>  <Rle> | <character>            <character>      <character>            <character>            <character>
@@ -91,6 +92,7 @@ GRanges object with 4 ranges and 5 metadata columns:
   [4]        1  51180000      - |  Intergenic                   <NA>             <NA>                   <NA>                   <NA>
   -------
   seqinfo: 1 sequence from an unspecified genome; no seqlengths
+```
 
 ---
 
