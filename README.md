@@ -1,4 +1,5 @@
-Introduction
+**Introduction**
+
 RMAnno is an R package specifically designed for the annotation of RNA-level modification sites. It addresses the inaccuracies, information loss, and integration difficulties that arise when existing tools—mostly derived from DNA-level annotation methods—are applied to RNA modification data. RMAnno provides researchers with an accurate, flexible, and reproducible workflow for annotating RNA modifications.
 
 Background and Motivation
@@ -12,7 +13,7 @@ Inconsistent results: Different tools produce markedly different annotation outp
 
 Moreover, based on our previous work with database workflows, we observed that RNA‑specific complexities—such as overlapping genes arising from alternative splicing, multiple transcript isoforms, and strand‑specific information—are often overlooked by existing tools, further compromising annotation accuracy.
 
-Key Features
+**Key Features**
 RNA‑level specialization: Designed specifically for RNA modification sites, correctly handling overlapping genes and multi‑transcript annotation.
 
 Strand‑aware annotation: Incorporates strand‑specific information during annotation, avoiding the misassignments common with DNA‑based tools applied to RNA data.
